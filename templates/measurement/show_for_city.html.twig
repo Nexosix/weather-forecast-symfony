@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Measurement{% endblock %}
+
+{% block body %}
+    <h1>Measurements for {{ location.city }}</h1>
+
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Weather</th>
+            <th>Celsius</th>
+            <th>Wind</th>
+            <th>Humidity</th>
+            <th>Rain</th>
+            <th>Created_at</th>
+        </thead>
+        <tbody>
+        {% for measurement in measurements %}
+            <tr>
+                <td>{{ measurement.id }}</td>
+                <td>{{ measurement.weather }}</td>
+                <td>{{ measurement.celsius }}</td>
+                <td>{{ measurement.wind }}</td>
+                <td>{{ measurement.humidity }}</td>
+                <td>{{ measurement.rain }}</td>
+                <td>{{ measurement.createdAt ? measurement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('app_measurement_index') }}">back to list</a> #}
+
+    {# <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a> #}
+
+    {# {{ include('measurement/_delete_form.html.twig') }} #}
+{% endblock %}

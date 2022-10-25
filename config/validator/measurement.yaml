@@ -1,0 +1,20 @@
+App\Entity\Measurement:
+  properties:
+    celsius:
+      - Range:
+          min: -100
+          max: 100
+          groups: ['new', 'edit']
+    wind:
+      - PositiveOrZero:
+          groups: ['new', 'edit']
+    humidity:
+      - Range:
+          min: 0
+          max: 100
+          groups: ['new', 'edit']
+    rain:
+      - Range:
+          min: 0
+          max: 100
+          groups: ['new', 'edit']
