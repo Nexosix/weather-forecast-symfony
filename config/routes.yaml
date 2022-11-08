@@ -1,6 +1,16 @@
-index:
+weather_by_location:
+   path: /weather/{location}
+   controller: App\Controller\WeatherController:locationAction
+   requirements:
+      locationId: '\d+'
+
+weather_by_country_and_city:
    path: /weather/{country}/{city}
    controller: App\Controller\WeatherController::cityAction
    requirements:
     country: '\w+'
     city: '\w+'
+
+app_logout:
+   path: /logout
+   methods: GET

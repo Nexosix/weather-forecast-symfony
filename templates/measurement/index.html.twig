@@ -29,8 +29,13 @@
                 <td>{{ measurement.rain }}</td>
                 <td>{{ measurement.createdAt ? measurement.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
-                    <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                    {% if is_granted('ROLE_MEASUREMENT_READ') %}
+                        <a href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
+                    {% endif %}
+                    
+                    {% if is_granted('ROLE_MEASUREMENT_UPDATE') %}
+                        <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -41,5 +46,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_measurement_new') }}">Create new</a>
+    {% if is_granted('ROLE_MEASUREMENT_CREATE') %}
+        <a href="{{ path('app_measurement_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
